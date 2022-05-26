@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script>
+    $(document).ready(
+        $('#btn').click(function () {
+            $("#form1").submit();
+        })
+    );
+</script>
+
+<form id="form1" action="/Home/RegisterForm" enctype="multipart/form-data" method="post">
+    <p>아이디: <input type="text" name="MemberID" /></p>
+    <p>비밀번호: <input type="password" name="Password" /></p>
+    <p>닉네임: <input type="text" name="NickName" /></p>
+    <p>이메일: <input type="text" name="Email" /></p>
+    <p>파일: <input type="file" name="file1" /></p>
+    <input type="submit" />
+</form>
+<div id="btn">가입하기</div>

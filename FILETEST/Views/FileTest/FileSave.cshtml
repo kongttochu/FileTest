@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "FileSave";
+}
+
+<h2>FileSave</h2>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script>
+    $(document).ready(
+        $('#btn').click(function () {
+            $("#form1").submit();
+        })
+    );
+
+</script>
+
+<form id="form1" action="/FileTest/RegisterForm" enctype="multipart/form-data" method="post">
+    <p>파일: <input type="file" name="file1" /></p>
+    <input type="submit" />
+</form>
+<div id="btn">업로드</div>
+
