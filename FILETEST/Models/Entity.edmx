@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FILETESTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FILESAVETEST">
+          <Key>
+            <PropertyRef Name="IDX" />
+          </Key>
+          <Property Name="IDX" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FILE_SIZE" Type="int" />
+          <Property Name="FILE_EXTENTION" Type="nvarchar" MaxLength="10" />
+          <Property Name="FILE_ORGNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="FILE_ENCODINGNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="FILE_SAVEDATE" Type="date" />
+          <Property Name="REGDATE" Type="date" />
+          <Property Name="REGID" Type="nvarchar" MaxLength="50" />
+          <Property Name="UPDDATE" Type="date" />
+          <Property Name="UPDID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ISUSE" Type="nvarchar" MaxLength="1" />
+          <Property Name="ETC" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="USP_GETFILENAMES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_SAVEFILEINFO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SIZE" Type="int" Mode="In" />
+          <Parameter Name="EXTENSIOTN" Type="nvarchar" Mode="In" />
+          <Parameter Name="ORGNAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="ENCODINGNAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="SAVEDATE" Type="date" Mode="In" />
+        </Function>
+        <EntityContainer Name="FILETESTModelStoreContainer">
+          <EntitySet Name="FILESAVETEST" EntityType="Self.FILESAVETEST" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FILETESTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FILESAVETEST">
+          <Key>
+            <PropertyRef Name="IDX" />
+          </Key>
+          <Property Name="IDX" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FILE_SIZE" Type="Int32" />
+          <Property Name="FILE_EXTENTION" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FILE_ORGNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FILE_ENCODINGNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FILE_SAVEDATE" Type="DateTime" Precision="0" />
+          <Property Name="REGDATE" Type="DateTime" Precision="0" />
+          <Property Name="REGID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UPDDATE" Type="DateTime" Precision="0" />
+          <Property Name="UPDID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ISUSE" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ETC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="FILETESTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FILESAVETEST" EntityType="Self.FILESAVETEST" />
+          <FunctionImport Name="USP_GETFILENAMES" ReturnType="Collection(FILETESTModel.USP_GETFILENAMES_Result)" />
+          <FunctionImport Name="USP_SAVEFILEINFO">
+            <Parameter Name="SIZE" Mode="In" Type="Int32" />
+            <Parameter Name="EXTENSIOTN" Mode="In" Type="String" />
+            <Parameter Name="ORGNAME" Mode="In" Type="String" />
+            <Parameter Name="ENCODINGNAME" Mode="In" Type="String" />
+            <Parameter Name="SAVEDATE" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="USP_GETFILENAMES_Result">
+          <Property Type="String" Name="FILE_ORGNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FILE_EXTENTION" Nullable="true" MaxLength="10" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FILETESTModelStoreContainer" CdmEntityContainer="FILETESTEntities">
+          <EntitySetMapping Name="FILESAVETEST">
+            <EntityTypeMapping TypeName="FILETESTModel.FILESAVETEST">
+              <MappingFragment StoreEntitySet="FILESAVETEST">
+                <ScalarProperty Name="IDX" ColumnName="IDX" />
+                <ScalarProperty Name="FILE_SIZE" ColumnName="FILE_SIZE" />
+                <ScalarProperty Name="FILE_EXTENTION" ColumnName="FILE_EXTENTION" />
+                <ScalarProperty Name="FILE_ORGNAME" ColumnName="FILE_ORGNAME" />
+                <ScalarProperty Name="FILE_ENCODINGNAME" ColumnName="FILE_ENCODINGNAME" />
+                <ScalarProperty Name="FILE_SAVEDATE" ColumnName="FILE_SAVEDATE" />
+                <ScalarProperty Name="REGDATE" ColumnName="REGDATE" />
+                <ScalarProperty Name="REGID" ColumnName="REGID" />
+                <ScalarProperty Name="UPDDATE" ColumnName="UPDDATE" />
+                <ScalarProperty Name="UPDID" ColumnName="UPDID" />
+                <ScalarProperty Name="ISUSE" ColumnName="ISUSE" />
+                <ScalarProperty Name="ETC" ColumnName="ETC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USP_GETFILENAMES" FunctionName="FILETESTModel.Store.USP_GETFILENAMES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FILETESTModel.USP_GETFILENAMES_Result">
+                <ScalarProperty Name="FILE_ORGNAME" ColumnName="FILE_ORGNAME" />
+                <ScalarProperty Name="FILE_EXTENTION" ColumnName="FILE_EXTENTION" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_SAVEFILEINFO" FunctionName="FILETESTModel.Store.USP_SAVEFILEINFO" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
