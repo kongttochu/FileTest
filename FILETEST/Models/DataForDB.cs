@@ -10,7 +10,7 @@ namespace FILETEST.Models
         public void SaveFile(FileSaveInfo info)
         {
             dbconn dbconn = new dbconn();
-            string queryString = 
+            string queryString =
                 string.Format("EXEC USP_SAVEFILEINFO {0}, \'{1}\', \'{2}\', \'{3}\', \'{4}\'"
                 , info.FILE_SIZE
                 , info.FILE_EXTENTION
@@ -36,6 +36,27 @@ namespace FILETEST.Models
                     );
             }
             return list;
+        }
+
+        public void SaveFileEntity(FileSaveInfo info)
+        {
+            FILETESTEntities fs = new FILETESTEntities();
+            fs.USP_SAVEFILEINFO(
+                 info.FILE_SIZE
+                , info.FILE_EXTENTION
+                , info.FILE_ORGNAME
+                , info.FILE_ENCODINGNAME
+                , info.FILE_SAVEDATE
+                );
+        }
+
+        public List<string> GetFileNameListEntity()
+        {
+            FILETESTEntities fs = new FILETESTEntities();
+            var names = fs.USP_GETFILENAMES()
+                .Select(n => string.Format("{0}.{1}", n.FILE_ORGNAME, n.FILE_EXTENTION))
+                .ToList();
+            return names;
         }
     }
 }

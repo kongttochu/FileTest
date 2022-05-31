@@ -30,14 +30,14 @@ namespace FILETEST.Controllers
             file.SaveAs(savePath);
 #endif
             DataForDB dataDB = new DataForDB();
-            dataDB.SaveFile(info);
+            dataDB.SaveFileEntity(info);
             return View();
         }
 
         public JsonResult GetFileNameList()
         {
             DataForDB data = new DataForDB();
-            string jsonData = JsonConvert.SerializeObject(data.GetFileNameList());
+            string jsonData = JsonConvert.SerializeObject(data.GetFileNameListEntity());
             return Json(jsonData);
         }
     }
